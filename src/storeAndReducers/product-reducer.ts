@@ -1,4 +1,5 @@
-type ProductType = {
+export type ProductType = {
+    id: number
     productName: string
     productProducer: string
     cost: number
@@ -7,6 +8,7 @@ type ProductType = {
 
 const initialState: Array<ProductType> = [
     {
+        id: 1,
         productName: 'Iphone 13',
         productProducer: 'Apple',
         cost: 850,
@@ -14,6 +16,7 @@ const initialState: Array<ProductType> = [
     },
 
     {
+        id: 2,
         productName: 'Iphone 12',
         productProducer: 'Apple',
         cost: 800,
@@ -21,6 +24,7 @@ const initialState: Array<ProductType> = [
     },
 
     {
+        id: 3,
         productName: 'Iphone 11',
         productProducer: 'Apple',
         cost: 600,
