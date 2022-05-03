@@ -1,3 +1,4 @@
+import React from 'react';
 import {ProductType} from "../storeAndReducers/product-reducer";
 import {Button} from "@mui/material";
 
@@ -10,7 +11,9 @@ export const Product = (props: ProductPropsType) => {
     return <div>
         <h3>{props.productDescription.productName}</h3>
         <p>{props.productDescription.productProducer}</p>
-        <img src={props.productDescription.image}/>
+        <img src={props.productDescription.image}
+             style={{ height: 250, width: 200}}
+        />
         <p>Price: {props.productDescription.cost}$</p>
 
         <div style={{paddingTop: '10px'}}>
