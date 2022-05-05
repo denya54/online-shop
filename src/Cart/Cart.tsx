@@ -17,7 +17,7 @@ export const Cart = () => {
 
 
     const myCart = useSelector<AppRootState, InitialStateCart>(state => state.cart)
-    if (myCart !== null) {
+    if (myCart.length > 0) {
         return (
 
             <div className={styles.cartPage}>

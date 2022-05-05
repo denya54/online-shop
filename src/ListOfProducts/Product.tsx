@@ -1,12 +1,21 @@
 import React from 'react';
 import {ProductType} from "../storeAndReducers/product-reducer";
 import {Button} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {addProductToCartAC} from "../storeAndReducers/cart-reducer";
 
 type ProductPropsType = {
     productDescription: ProductType
 }
 
 export const Product = (props: ProductPropsType) => {
+
+    const dispatch = useDispatch()
+
+
+    const addProductToCart = (product: ProductType) => {
+        dispatch(addProductToCartAC(product))
+    }
 
     return <div>
         <h3>{props.productDescription.productName}</h3>
@@ -18,7 +27,7 @@ export const Product = (props: ProductPropsType) => {
 
         <div style={{paddingTop: '10px'}}>
             <Button variant={ 'outlined'}
-                    onClick={()=> alert('go to your basket')}
+                    onClick={()=> addProductToCart(props.productDescription)}
                     color={'inherit'}
             >add to cart
             </Button>
