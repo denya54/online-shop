@@ -2,9 +2,15 @@ import {useSelector} from "react-redux";
 import {AppRootState} from "../storeAndReducers/store";
 import {ProductType} from "../storeAndReducers/product-reducer";
 import {Product} from "./Product";
-import {Grid, Paper} from "@mui/material";
+import {Button, Grid, Paper} from "@mui/material";
+import React from "react";
+import { useNavigate} from "react-router-dom";
 
 export const ListOfProducts = () => {
+
+    const navigate = useNavigate();
+    const redirectToCart = () => navigate('/cart')
+
 
     const products = useSelector<AppRootState, Array<ProductType>>(state => state.products)
 
@@ -27,5 +33,11 @@ export const ListOfProducts = () => {
                 })
             }
         </Grid>
+        <Button variant={ 'contained'}
+                onClick={redirectToCart}
+                color={'success'}
+        >
+            GO TO CART
+        </Button>
     </>
 }

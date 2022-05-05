@@ -1,6 +1,8 @@
-import {ProductType} from "./product-reducer";
+import {ProductType} from "./product-reducer"
 
-const initialState: Array<ProductType> = [
+export type InitialStateCart = Array<ProductType> | null
+
+const initialState: InitialStateCart = [
     {
         id: 1,
         productName: 'Iphone 13',
@@ -17,7 +19,7 @@ const initialState: Array<ProductType> = [
         image: 'https://content2.onliner.by/catalog/device/header/bf14a99b6b00fa25711a3e8e7a87d23a.jpeg'
     }]
 
-export const cartReducer = (state: Array<ProductType> = initialState, action: any) => {
+export const cartReducer = (state: InitialStateCart = initialState, action: any) => {
     switch (action.type) {
         default:
             return state

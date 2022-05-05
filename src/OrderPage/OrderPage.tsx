@@ -1,12 +1,15 @@
 import {Button, FormControl, FormGroup, Grid, TextField} from "@mui/material";
 import React from "react";
+import {TitleForPage} from "../Cart/Cart";
 
 
 export const OrderPage = () => {
     return (
-        <Grid container justifyContent={'center'}>
-            <Grid item justifyContent={'center'}>
-                // формик сюда
+        <div>
+            <TitleForPage text={'Please, write on the forms'}/>
+            <Grid container justifyContent={'center'}>
+                <Grid item justifyContent={'center'}>
+                    // формик сюда
                     <FormControl>
                         <FormGroup>
                             <TextField
@@ -38,8 +41,8 @@ export const OrderPage = () => {
                                 //onChange={handleChange}
                             />
                             To pay: 0$
-                            <Button variant={ 'contained'}
-                                    onClick={()=> alert('thank you for your order')}
+                            <Button variant={'contained'}
+                                    onClick={() => alert('thank you for your order')}
                                     color={'success'}
                             >
                                 ORDER
@@ -47,9 +50,10 @@ export const OrderPage = () => {
 
                         </FormGroup>
                     </FormControl>
-                //формик закрыть
+                    //формик закрыть
+                </Grid>
             </Grid>
-        </Grid>
-
+        </div>
     )
-}
+};
+
