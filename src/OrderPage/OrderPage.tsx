@@ -3,7 +3,11 @@ import React from "react";
 import {TitleForPage} from "../Cart/Cart";
 
 
-export const OrderPage = () => {
+type OrderPagePropsType = {
+    totalCost: number | null
+}
+
+export const OrderPage = (props: OrderPagePropsType) => {
     return (
         <div>
             <TitleForPage text={'Please, write on the forms'}/>
@@ -40,7 +44,7 @@ export const OrderPage = () => {
                                 margin="normal"
                                 //onChange={handleChange}
                             />
-                            To pay: 0$
+                            To pay: {props.totalCost}$
                             <Button variant={'contained'}
                                     onClick={() => alert('thank you for your order')}
                                     color={'success'}

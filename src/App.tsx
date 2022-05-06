@@ -7,13 +7,32 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {Cart} from "./Cart/Cart";
 import {OrderPage} from "./OrderPage/OrderPage";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {AppRootState} from "./storeAndReducers/store";
+import {InitialStateCart} from "./storeAndReducers/cart-reducer";
 
+// function for sum our cart
+function arraySum(array: Array<number>){
+    let sum = 0;
+    for(let i = 0; i < array.length; i++){
+        sum += array[i];
+    }
+    if (sum === 0) {
+        return null
+    } else {
+        return sum
+    }
+}
 
 function App() {
 
     const navigate = useNavigate();
     const redirectToShop = () => navigate('/')
     const redirectToCart = () => navigate('/cart')
+
+    const myCart = useSelector<AppRootState, InitialStateCart>(state => state.cart)
+
+    const totalCost = arraySum(myCart.map(pr => pr.cost))
 
     return (
         <div className="App">
@@ -44,7 +63,7 @@ function App() {
                                     color="inherit"
                                 >
                                     <ShoppingCartCheckoutTwoToneIcon/>
-                                    700$
+                                    {totalCost}$
                                 </IconButton>
                             </div>
 
@@ -55,8 +74,8 @@ function App() {
                 <Container fixed>
                     <Routes>
                       <Route path='/' element={<ListOfProducts/>} />
-                      <Route path='/cart' element={<Cart/>} />
-                      <Route path='/order' element={<OrderPage/>} />
+                      <Route path='/cart' element={<Cart totalCost={totalCost}/>} />
+                      <Route path='/order' element={<OrderPage totalCost={totalCost}/>} />
                       <Route path='/404' element={<h1>404 - Page not found</h1>} />
                       <Route path='*' element={<Navigate to={'/404'}/>} />
                     </Routes>

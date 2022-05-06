@@ -10,13 +10,18 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {useNavigate} from "react-router-dom";
 import {InitialStateCart} from "../storeAndReducers/cart-reducer";
 
-export const Cart = () => {
+type CartPropsType = {
+    totalCost: number | null
+}
+
+export const Cart = (props: CartPropsType) => {
 
     const navigate = useNavigate();
     const redirectToOrderPage = () => navigate('/order')
 
 
     const myCart = useSelector<AppRootState, InitialStateCart>(state => state.cart)
+
     if (myCart.length > 0) {
         return (
 
@@ -39,7 +44,7 @@ export const Cart = () => {
                                             <RemoveCircleOutlineIcon/>
                                         </IconButton>
 
-                                        1
+                                        {pr.quantity}
                                         <IconButton color="primary" onClick={() => alert('plus')}>
                                             <AddCircleOutlineIcon/>
                                         </IconButton>
@@ -52,7 +57,7 @@ export const Cart = () => {
                     </Stack>
 
                 </div>
-                Total price:
+                Total price: {props.totalCost}$
                 <div>
                     <Button variant={'contained'}
                             onClick={redirectToOrderPage}
