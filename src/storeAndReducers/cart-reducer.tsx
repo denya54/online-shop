@@ -26,6 +26,9 @@ export const cartReducer = (state: InitialStateCart = initialState, action: Acti
             }
             return state.filter(pr => pr.id !== action.productID)
         }
+        case "SET-PRODUCT-FROM-LS": {
+            return action.products
+        }
         default:
             return state
     }
@@ -49,7 +52,14 @@ export const minusOneProductAC = (productID: number, productQuantity: number) =>
     } as const
 }
 
+export const setProductFromLSAC = (products: Array<ProductType>) => {
+    return {
+        type: 'SET-PRODUCT-FROM-LS', products: products
+    } as const
+}
+
 
 type ActionCartType = ReturnType<typeof addProductToCartAC>
     | ReturnType<typeof plusOneProductAC>
     | ReturnType<typeof minusOneProductAC>
+    | ReturnType<typeof setProductFromLSAC>

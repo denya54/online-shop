@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {ListOfProducts} from "./ListOfProducts/ListOfProducts";
 import {AppBar, Box, Container, FormGroup, IconButton, Toolbar, Typography} from "@mui/material";
@@ -25,6 +25,10 @@ function arraySum(arrayCost: Array<number>, arrayQuantity: Array<number>){
 }
 
 function App() {
+
+    useEffect(()=> {
+
+    }, [])
 
     const navigate = useNavigate();
     const redirectToShop = () => navigate('/')

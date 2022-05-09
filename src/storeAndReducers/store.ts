@@ -1,6 +1,8 @@
 import {productsReducer} from "./product-reducer";
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {cartReducer} from "./cart-reducer";
+import thunk from "redux-thunk";
+import {loadState, saveState} from "../utils/localStorage";
 
 
 const rootReducer = combineReducers ({
@@ -8,6 +10,10 @@ const rootReducer = combineReducers ({
     cart: cartReducer
 })
 
-export const store = createStore(rootReducer)
+export const store = createStore(rootReducer, loadState(), applyMiddleware(thunk))
+
+store.subscribe(()=> {
+    saveState(store.getState())
+})
 
 export type AppRootState = ReturnType<typeof rootReducer>
