@@ -12,10 +12,10 @@ import {AppRootState} from "./storeAndReducers/store";
 import {InitialStateCart} from "./storeAndReducers/cart-reducer";
 
 // function for sum our cart
-function arraySum(array: Array<number>){
+function arraySum(arrayCost: Array<number>, arrayQuantity: Array<number>){
     let sum = 0;
-    for(let i = 0; i < array.length; i++){
-        sum += array[i];
+    for(let i = 0; i < arrayCost.length; i++){
+        sum += arrayCost[i] * arrayQuantity[i];
     }
     if (sum === 0) {
         return null
@@ -32,7 +32,10 @@ function App() {
 
     const myCart = useSelector<AppRootState, InitialStateCart>(state => state.cart)
 
-    const totalCost = arraySum(myCart.map(pr => pr.cost))
+    let arrayQuantity = myCart.map(pr => pr.quantity)
+    let arrayCost = myCart.map(pr => pr.cost)
+
+    const totalCost = arraySum(arrayCost, arrayQuantity)
 
     return (
         <div className="App">
