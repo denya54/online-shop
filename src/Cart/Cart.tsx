@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, IconButton, Stack} from "@mui/material";
 import Paper from '@mui/material/Paper';
 import {styled} from '@mui/material/styles';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "../storeAndReducers/store";
 import styles from './Cart.module.css'
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {useNavigate} from "react-router-dom";
-import {InitialStateCart} from "../storeAndReducers/cart-reducer";
+import {InitialStateCart, minusOneProductAC, plusOneProductAC} from "../storeAndReducers/cart-reducer";
 
 type CartPropsType = {
     totalCost: number | null
@@ -18,7 +18,7 @@ export const Cart = (props: CartPropsType) => {
 
     const navigate = useNavigate();
     const redirectToOrderPage = () => navigate('/order')
-
+    const dispatch = useDispatch()
 
     const myCart = useSelector<AppRootState, InitialStateCart>(state => state.cart)
 
@@ -40,12 +40,12 @@ export const Cart = (props: CartPropsType) => {
                                         <p>Price: {pr.cost}$</p>
                                     </div>
                                     <div className={styles.productOptions}>
-                                        <IconButton color="primary" onClick={() => alert('minus')}>
+                                        <IconButton color="primary" onClick={() => dispatch(minusOneProductAC(pr.id, pr.quantity))}>
                                             <RemoveCircleOutlineIcon/>
                                         </IconButton>
 
                                         {pr.quantity}
-                                        <IconButton color="primary" onClick={() => alert('plus')}>
+                                        <IconButton color="primary" onClick={() =>  dispatch(plusOneProductAC(pr.id))}>
                                             <AddCircleOutlineIcon/>
                                         </IconButton>
 

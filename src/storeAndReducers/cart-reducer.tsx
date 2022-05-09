@@ -17,6 +17,15 @@ export const cartReducer = (state: InitialStateCart = initialState, action: Acti
             }
             return [action.product, ...state]
         }
+        case "PLUS-ONE-PRODUCT": {
+            return state.map(pr => pr.id === action.productID ? {...pr, quantity: pr.quantity + 1} : pr)
+        }
+        case "MINUS-ONE-PRODUCT": {
+            if (action.productQuantity > 1) {
+                return state.map(pr => pr.id === action.productID ? {...pr, quantity: pr.quantity - 1} : pr)
+            }
+            return state.filter(pr => pr.id !== action.productID)
+        }
         default:
             return state
     }
@@ -25,8 +34,22 @@ export const cartReducer = (state: InitialStateCart = initialState, action: Acti
 export const addProductToCartAC = (product: ProductType) => {
     return {
         type: 'ADD-PRODUCT-TO-CARD', product: product
-    }
+    } as const
+}
+
+export const plusOneProductAC = (productID: number) => {
+    return {
+        type: 'PLUS-ONE-PRODUCT', productID: productID
+    } as const
+}
+
+export const minusOneProductAC = (productID: number, productQuantity: number) => {
+    return {
+        type: 'MINUS-ONE-PRODUCT', productID: productID, productQuantity
+    } as const
 }
 
 
 type ActionCartType = ReturnType<typeof addProductToCartAC>
+    | ReturnType<typeof plusOneProductAC>
+    | ReturnType<typeof minusOneProductAC>
