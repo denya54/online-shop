@@ -10,6 +10,8 @@ import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {AppRootState} from "./storeAndReducers/store";
 import {InitialStateCart} from "./storeAndReducers/cart-reducer";
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 // function for sum our cart
 function arraySum(arrayCost: Array<number>, arrayQuantity: Array<number>){
