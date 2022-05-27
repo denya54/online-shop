@@ -6,10 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./storeAndReducers/store";
 import {BrowserRouter, HashRouter} from "react-router-dom";
-import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyC9MKkWELs2MS5-yEyMFp6xZcalSYirpFE",
     authDomain: "shop-online-firebase1.firebaseapp.com",
     databaseURL: "https://shop-online-firebase1-default-rtdb.europe-west1.firebasedatabase.app",
@@ -18,9 +17,6 @@ const firebaseConfig = {
     messagingSenderId: "366225161384",
     appId: "1:366225161384:web:432d2426161ff6c94a169d"
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
