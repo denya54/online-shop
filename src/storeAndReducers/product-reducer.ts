@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {phonesAPI} from "../api/api";
+
 export type ProductType = {
     id: number
     productName: string
@@ -66,5 +69,28 @@ export const productsReducer = (state: Array<ProductType> = initialState, action
     switch (action.type) {
         default:
             return state
+    }
+}
+
+export const setListOfPhonesAC = (listOfPhones: any) => ({type: 'SET-PHONES', listOfPhones} as const)
+
+
+export const setListOfPhonesTC = () => {
+    return (dispatch: any) => {
+        // dispatch(setAppStatusAC('loading'))
+        phonesAPI.getPhones()
+            .then((res) => {
+                debugger
+
+            })
+        // todolistsAPI.getTodolists()
+        //     .then((res) => {
+        //         dispatch(setTodolistsAC(res.data))
+        //         dispatch(setAppStatusAC('succeeded'))
+        //     })
+        //     .catch((err) => {
+        //         dispatch(setAppErrorAC(err.message))
+        //         dispatch(setAppStatusAC('failed'))
+        //     })
     }
 }

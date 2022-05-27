@@ -7,12 +7,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {Cart} from "./Cart/Cart";
 import {OrderPage} from "./OrderPage/OrderPage";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./storeAndReducers/store";
 import {InitialStateCart} from "./storeAndReducers/cart-reducer";
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, set  } from "firebase/database";
 import {firebaseConfig} from "./index";
+import {setListOfPhonesTC} from "./storeAndReducers/product-reducer";
 
 // function for sum our cart
 function arraySum(arrayCost: Array<number>, arrayQuantity: Array<number>){
@@ -47,12 +48,13 @@ function App() {
     // writePhoneData(5, 'Iphone 12 mini', 'Apple', 650, 'https://content2.onliner.by/catalog/device/header/addec6d2c3971bbcdade43d8173d870b.jpeg', 1)
     // writePhoneData(6, 'Iphone SE 2022', 'Apple', 550, 'https://content2.onliner.by/catalog/device/header/c1c9b8d9f87b130ee6ee5554ad3f0b13.jpeg', 1)
     console.log(database)
-    // useEffect(()=> {
-    //     const app = initializeApp(firebaseConfig);
-    //     const database = getDatabase(app);
-    //     console.log(database)
-    //
-    // }, [])
+
+    const dispatch = useDispatch()
+
+    useEffect(()=> {
+        // @ts-ignore
+        dispatch(setListOfPhonesTC())
+    }, [])
 
     const navigate = useNavigate();
     const redirectToShop = () => navigate('/')
