@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
-    baseURL: "https://console.firebase.google.com/project/shop-online-firebase1/database/shop-online-firebase1-default-rtdb/data/~2F",
+    baseURL: "https://cors-anywhere.herokuapp.com/https://shop-online-firebase1-default-rtdb.europe-west1.firebasedatabase.app",
     headers: {
         'API-KEY': "AIzaSyC9MKkWELs2MS5-yEyMFp6xZcalSYirpFE"
     }
